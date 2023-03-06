@@ -5,8 +5,9 @@ const userSchema = new mongoose.Schema({
   lastName: { type: String, required: true, minlength: 3, maxlength: 12 },
   DoB: { type: Date, required: true },
   phoneNumber: { type: Number, required: true, min: 10, max: 10 },
-  email: { type: String, required: true, match:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/},
+  email: { type: String, required: true, match:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, unique : true},
   password: { type: String, required: true, minlength: 8, maxlength: 16 },
+  role : {type: mongoose.Schema.Types.ObjectId , ref: "role"}
 });
 
 module.exports = mongoose.model("user", userSchema);

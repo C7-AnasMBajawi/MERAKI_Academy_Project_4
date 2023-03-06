@@ -14,10 +14,11 @@ const register = (req, res) =>{
 
     newUser
         .save()
-        .then(()=>{
-            res.json({
+        .then((user)=>{
+            res.status(201).json({
                 success : true,
-                message : "user created successfully"
+                message : "user created successfully",
+                user : user
             })
         })
         .catch((err)=>{
