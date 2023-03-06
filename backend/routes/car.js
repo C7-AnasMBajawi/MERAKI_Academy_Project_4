@@ -1,9 +1,17 @@
-const express = require("express")
+const express = require("express");
 
-const carRouter = express.Router()
+const carRouter = express.Router();
 
-const {createNewCarAd} = require("../controllers/car")
+const {
+  createNewCarAd,
+  getAllrentAds,
+  deleteCarById,
+  updateCarById,
+} = require("../controllers/car");
 
-carRouter.post("/car", createNewCarAd)
+carRouter.post("/", createNewCarAd);
+carRouter.get("/", getAllrentAds);
+carRouter.delete("/:id", deleteCarById);
+carRouter.put("/:id", updateCarById);
 
-module.exports = carRouter
+module.exports = carRouter;
