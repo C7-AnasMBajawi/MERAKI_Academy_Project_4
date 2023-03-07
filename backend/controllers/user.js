@@ -1,8 +1,9 @@
 const userModel = require("../models/user");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const register = (req, res) => {
-  const { firstName, lastName, DoB, phoneNumber, email, password } = req.body;
+  const { firstName, lastName, DoB, phoneNumber, email, password, role} = req.body;
 
   const newUser = new userModel({
     firstName,
@@ -11,6 +12,7 @@ const register = (req, res) => {
     phoneNumber,
     email,
     password,
+    role
   });
 
   newUser
@@ -34,42 +36,42 @@ const login = (req, res) => {
   const { email, password } = req.body;
 
   userModel
-    .findOne({email})
+    .findOne({ email })
+    .populate("role")
     .then(async (result) => {
-        console.log(result.password);
-      if (result) {
-        try {
-          const valid = await bcrypt.compare(password, result.password);
-          console.log(valid);
-          if (valid) {
-            res.satatus(200);
-            res.json({
-              success: true,
-              message: "Valid credentials",
-            });
-          } else {
-            res.status(401);
-            res.json({
-              error: err,
-              success: false,
-              message: "the email dosen't exist or password you entered is incorrect",
-            });
-          }
-        } catch (error) {
-          throw error;
-        }
-      }else{
+        console.log(result);
+      if (!result) {
         res.status(401);
         res.json({
           error: err,
           success: false,
-          message: "Invalid credentials",
+          message:
+            "the email dosen't exist or password you entered is incorrect",
         });
+        return;
+      }
+      try {
+        const valid = await bcrypt.compare(password, result.password);
+        if (valid) {
+          res.status(200).json({
+            success: true,
+            message: "Valid credentials",
+          });
+        } else{
+            res.status(401);
+            res.json({
+              error: err,
+              success: false,
+              message:
+                "the email dosen't exist or password you entered is incorrect",
+            }) 
+        }
+      } catch (error) {
+        throw new Error("err");
       }
     })
     .catch((err) => {
-      res.status(500);
-      res.json({
+      res.status(500).json({
         error: err,
         message: "server error",
       });

@@ -7,8 +7,8 @@ const userSchema = new mongoose.Schema({
   DoB: { type: Date, required: true },
   phoneNumber: { type: Number, required: true ,minlength: 10, maxlength: 10 },
   email: { type: String, required: true, match:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, unique : true},
-  password: { type: String, required: true, minlength: 8, maxlength: 16 },
-//   role : {type: mongoose.Schema.Types.ObjectId , ref: "role"}
+  password: { type: String, required: true, match :/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,16}$/ },
+  role : {type: mongoose.Schema.Types.ObjectId , ref: "role"}
 });
 
 userSchema.pre("save", async function(){
