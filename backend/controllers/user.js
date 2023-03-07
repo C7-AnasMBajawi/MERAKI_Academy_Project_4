@@ -39,7 +39,7 @@ const login = (req, res) => {
     .findOne({ email })
     .populate("role")
     .then(async (result) => {
-        console.log(result);
+
       if (!result) {
         res.status(401);
         res.json({
@@ -53,10 +53,25 @@ const login = (req, res) => {
       try {
         const valid = await bcrypt.compare(password, result.password);
         if (valid) {
+
+            const payload = {
+                id : result._id,
+                role : result.role,
+                renter : result.firstName,
+            }
+
+            const options = {
+                expiresIn : "60m"
+            }
+
+            const token = jwt.sign(payload, process.env.SECRET, options)
+
           res.status(200).json({
             success: true,
             message: "Valid credentials",
+            token : token
           });
+
         } else{
             res.status(401);
             res.json({
