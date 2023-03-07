@@ -34,29 +34,44 @@ const login = (req, res) => {
   const { email, password } = req.body;
 
   userModel
-    .find({ email })
-    .then((result) => {
+    .findOne({email})
+    .then(async (result) => {
+        console.log(result.password);
       if (result) {
-        const vaild = bcrypt.compare(this.password, result.password)
-        
-        res.satatus(200);
+        try {
+          const valid = await bcrypt.compare(password, result.password);
+          console.log(valid);
+          if (valid) {
+            res.satatus(200);
+            res.json({
+              success: true,
+              message: "Valid credentials",
+            });
+          } else {
+            res.status(401);
+            res.json({
+              error: err,
+              success: false,
+              message: "the email dosen't exist or password you entered is incorrect",
+            });
+          }
+        } catch (error) {
+          throw error;
+        }
+      }else{
+        res.status(401);
         res.json({
-          success: true,
-          message: "Valid credentials",
-        });
-      } else {
-        res.status(404).json({
+          error: err,
           success: false,
-          message: " the email dosen't exist or the password is incorrect",
+          message: "Invalid credentials",
         });
       }
     })
     .catch((err) => {
-      res.status(401);
+      res.status(500);
       res.json({
         error: err,
-        success: false,
-        message: "Invalid credentials",
+        message: "server error",
       });
     });
 };
