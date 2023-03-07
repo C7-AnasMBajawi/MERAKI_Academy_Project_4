@@ -1,5 +1,7 @@
 const express = require("express");
+
 const authentication = require("../middleware/authentication")
+const authorization = require("../middleware/authorization")
 
 const carRouter = express.Router();
 
@@ -10,7 +12,7 @@ const {
   updateCarById,
 } = require("../controllers/car");
 
-carRouter.post("/", createNewCarAd);
+carRouter.post("/", authentication, authorization("CREATE"), createNewCarAd);
 carRouter.get("/", getAllrentAds);
 carRouter.delete("/:id", deleteCarById);
 carRouter.put("/:id", updateCarById);
