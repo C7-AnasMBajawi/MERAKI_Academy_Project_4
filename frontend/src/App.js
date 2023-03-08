@@ -1,6 +1,7 @@
 import "./App.css";
 import { Navbar } from "./components/Navbar";
 import { Register } from "./components/Navbar/Register";
+import { Login } from "./components/Navbar/Login"
 import { Routes, Route, Link } from "react-router-dom";
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path ="/register" element ={<Register/>}/>
+        <Route path = "/login" element = {<Login/>}/>
       </Routes>
     </div>
   );
