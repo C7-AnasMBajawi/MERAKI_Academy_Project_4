@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../App";
+import axios from "axios";
 
 import {
   MDBContainer,
@@ -7,7 +8,7 @@ import {
   MDBCheckbox,
   MDBBtn,
   MDBIcon,
-  MDBTextArea
+  MDBTextArea,
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
@@ -27,99 +28,162 @@ export const AddCarAd = () => {
   const [title, setTitle] = useState("");
   const { isLoggedIn } = useContext(UserContext);
 
-    const postAd = ()=>{
-        
-    }
+  const postAd = () => {
+    axios
+      .post(
+        "http://localhost:5000/car/",
+        {
+          make,
+          model,
+          plateNumber,
+          year,
+          type,
+          fuelType,
+          isAutomatic,
+          milage,
+          color,
+          rentPrice,
+          title,
+          description,
+          location,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
       {isLoggedIn ? (
         <>
-          <MDBContainer  className="p-3 my-5 d-flex flex-column w-50">
+          <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
             <MDBInput
               wrapperClass="mb-4"
               label="make"
               id="form1"
               type="make"
+              onChange={(e) => {
+                setMake(e.target.value);
+              }}
             />
             <MDBInput
               wrapperClass="mb-4"
               label="model"
               id="form1"
               type="make"
+              onChange={(e) => {
+                setModel(e.target.value);
+              }}
             />
             <MDBInput
               wrapperClass="mb-4"
               label="year"
               id="form1"
               type="make"
+              onChange={(e) => {
+                setYear(e.target.value);
+              }}
             />
             <MDBInput
               wrapperClass="mb-4"
               label="milage"
               id="form1"
               type="make"
+              onChange={(e) => {
+                setMilage(e.target.value);
+              }}
             />
             <MDBInput
               wrapperClass="mb-4"
               label="plateNumber"
               id="form1"
               type="make"
+              onChange={(e) => {
+                setPlateNumber(e.target.value);
+              }}
             />
-            <MDBInput
+            <MDBCheckbox
               wrapperClass="mb-4"
               label="isAutomatic"
               id="form1"
-              type="make"
+              onChange={(e) => {
+                setisAutomatic(!isAutomatic);
+                console.log(isAutomatic);
+              }}
             />
             <MDBInput
               wrapperClass="mb-4"
               label="type"
               id="form1"
               type="make"
+              onChange={(e) => {
+                setType(e.target.value);
+              }}
             />
             <MDBInput
               wrapperClass="mb-4"
               label="color"
               id="form1"
               type="make"
+              onChange={(e) => {
+                setColor(e.target.value);
+              }}
             />
             <MDBInput
               wrapperClass="mb-4"
               label="fuel type"
               id="form1"
               type="make"
+              onChange={(e) => {
+                setFuelType(e.target.value);
+              }}
             />
             <MDBTextArea
               wrapperClass="mb-4"
               label="description"
               id="form1"
               type="make"
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
             />
             <MDBInput
               wrapperClass="mb-4"
               label="rent price"
               id="form1"
               type="make"
+              onChange={(e) => {
+                setRentPrice(e.target.value);
+              }}
             />
             <MDBInput
               wrapperClass="mb-4"
               label="title"
               id="form1"
               type="make"
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
             />
             <MDBInput
               wrapperClass="mb-4"
               label="location"
               id="form1"
               type="make"
+              onChange={(e) => {
+                setLocation(e.target.value);
+              }}
             />
-            <MDBBtn
-          className="mb-4"
-          
-        >
-          post ad
-        </MDBBtn>
+            <MDBBtn className="mb-4" onClick={(e)=>{postAd()}}>post ad</MDBBtn>
           </MDBContainer>
         </>
       ) : (
