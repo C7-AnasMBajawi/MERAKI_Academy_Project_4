@@ -14,7 +14,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
-  const {setToken} = useContext(UserContext)
+  const {setToken, setIsLoggedIn} = useContext(UserContext)
 
   const postLogin = () => {
     axios
@@ -23,6 +23,7 @@ export const Login = () => {
         console.log(res);
         setToken(res.data.token)
         localStorage.setItem("token", res.data.token)
+        setIsLoggedIn(true)
       })
       .catch((err) => {
         console.log(err);
@@ -62,8 +63,8 @@ export const Login = () => {
 
         <MDBBtn
           className="mb-4"
-          onClick={(e) => {
-            postLogin();
+          onClick={(e) => {navigate("/addAd")
+            postLogin()
           }}
         >
           Sign in
