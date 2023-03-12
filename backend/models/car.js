@@ -14,6 +14,7 @@ const carSchema = new mongoose.Schema({
     description : {type : String, required : true},
     isAutomatic : {type : Boolean, required : true},
     location : {type : String, required : true},
+    images : [String],
     user : {type : mongoose.Schema.Types.ObjectId, ref: "user"}
 })
 

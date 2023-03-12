@@ -15,6 +15,7 @@ const createNewCarAd = (req, res) => {
     title,
     description,
     location,
+    images
   } = req.body;
 
   const newCar = new carModel({
@@ -31,6 +32,7 @@ const createNewCarAd = (req, res) => {
     title,
     description,
     location,
+    images
   });
 
   newCar
@@ -116,6 +118,7 @@ const updateCarById = (res, req) => {
     title,
     description,
     location,
+    images
   } = req.body;
 
   carModel
