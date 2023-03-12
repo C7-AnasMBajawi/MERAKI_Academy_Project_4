@@ -11,10 +11,12 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   return (
+
     <UserContext.Provider value={{token , setToken , isLoggedIn , setIsLoggedIn}}>
       <div className="App">
         <header className="App-header"></header>
         <Navbar />
+
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

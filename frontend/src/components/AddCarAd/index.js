@@ -29,8 +29,7 @@ export const AddCarAd = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const { isLoggedIn } = useContext(UserContext);
-  const [imageUrl, setImageUrl] = useState("")
-
+  const [images, setImages] = useState("");
 
   const uplaodImage = () => {
     const uploadedImage = new FormData();
@@ -41,7 +40,7 @@ export const AddCarAd = () => {
       .post("https://api.cloudinary.com/v1_1/dre4mdodo/upload", uploadedImage)
       .then((res) => {
         console.log(res);
-        setImageUrl(res.data.url)
+        setImages(res.data.url);
       })
       .catch((err) => {
         console.log(err);
@@ -66,6 +65,7 @@ export const AddCarAd = () => {
           title,
           description,
           location,
+          images,
         },
         {
           headers: {
@@ -211,10 +211,20 @@ export const AddCarAd = () => {
                 setImage(e.target.files[0]);
               }}
             />
+            <br />
             <MDBBtn
               wrapperClass="mb-4 mt-4"
-              onClick={(e) => {uplaodImage()
-                postAd()
+              onClick={(e) => {
+                uplaodImage();
+              }}
+            >
+              upload
+            </MDBBtn>
+            <br />
+            <MDBBtn
+              wrapperClass="mb-4 mt-4"
+              onClick={(e) => {
+                postAd();
               }}
             >
               post ad
