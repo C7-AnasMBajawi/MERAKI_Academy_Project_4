@@ -61,6 +61,7 @@ const getAllrentAds = (req, res) => {
         res.status(200).json({
           success: true,
           message: "all cars",
+          cars: car
         });
       } else {
         res.status(200).json({
