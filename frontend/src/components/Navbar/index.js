@@ -18,10 +18,10 @@ export const Navbar = () => {
     //     <button className='rent1'  onClick={(e)=>{navigate("/cars")}}>cars for rent</button>
     //     <input class="search-bar" type="text" />
     // </div>
-    <MDBNavbar light bgColor="light">
+    <MDBNavbar className="bg-primary">
       <MDBContainer fluid>
-        <MDBNavbarBrand><img src="https://t3.ftcdn.net/jpg/04/08/51/18/360_F_408511812_8UGTuX8BieG571jrbmz0PYsqLv1xPrjO.jpg" height="50" width="80"/></MDBNavbarBrand>
-        <MDBNavbarLink
+        <MDBNavbarBrand><img src="https://t3.ftcdn.net/jpg/04/08/51/18/360_F_408511812_8UGTuX8BieG571jrbmz0PYsqLv1xPrjO.jpg" height="30" width="40"/></MDBNavbarBrand>
+        <MDBNavbarLink className="text-white" 
           onClick={(e) => {
             navigate("/login");
           }}
@@ -29,7 +29,7 @@ export const Navbar = () => {
           rent my car
         </MDBNavbarLink>
 
-        <MDBNavbarLink onClick={(e)=>{navigate("/cars")}}>vehclies</MDBNavbarLink>
+        <MDBNavbarLink className="text-white" onClick={(e)=>{navigate("/cars")}}>vehclies</MDBNavbarLink>
 
         <MDBInputGroup tag="form" className="d-flex w-auto mb-3">
           <input
@@ -38,7 +38,7 @@ export const Navbar = () => {
             aria-label="Search"
             type="Search"
           />
-          <MDBBtn outline>Search</MDBBtn>
+          <MDBBtn outline className="bg-light">Search</MDBBtn>
         </MDBInputGroup>
       </MDBContainer>
     </MDBNavbar>
