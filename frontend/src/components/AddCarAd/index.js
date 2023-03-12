@@ -29,6 +29,8 @@ export const AddCarAd = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const { isLoggedIn } = useContext(UserContext);
+  const [imageUrl, setImageUrl] = useState("")
+
 
   const uplaodImage = () => {
     const uploadedImage = new FormData();
@@ -39,6 +41,7 @@ export const AddCarAd = () => {
       .post("https://api.cloudinary.com/v1_1/dre4mdodo/upload", uploadedImage)
       .then((res) => {
         console.log(res);
+        setImageUrl(res.data.url)
       })
       .catch((err) => {
         console.log(err);
