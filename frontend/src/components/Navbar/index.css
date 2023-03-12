@@ -1,8 +1,7 @@
 .navbar{
     background-color: #3b71ca;
-    display: inline;
 }
-.rent1{
+/* .rent1{
     display: inline;
 }
 .rent{
@@ -11,4 +10,8 @@
 .search-bar{
     margin-right: 100px;
     display: inline;
+} */
+.navbar button {
+    float: left;
+    padding: 10px 10px;
 }

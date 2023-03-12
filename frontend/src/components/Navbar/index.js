@@ -6,7 +6,7 @@ export const Navbar = () => {
   return (
     <div className='navbar'>
         <button className='rent' onClick={(e)=>{navigate("/register")}}>rent my car</button>
-        <button className='rent1' onClick={(e)=>{navigate("/cars")}}>cars for rent</button>
+        <button className='rent1'  onClick={(e)=>{navigate("/cars")}}>cars for rent</button>
         <input class="search-bar" type="text" />
     </div>
   )

@@ -9,6 +9,7 @@ import {
   MDBBtn,
   MDBIcon,
   MDBTextArea,
+  MDBFile,
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
@@ -26,7 +27,13 @@ export const AddCarAd = () => {
   const [location, setLocation] = useState("");
   const [rentPrice, setRentPrice] = useState("");
   const [title, setTitle] = useState("");
+  const [image, setImage] = useState("")
   const { isLoggedIn } = useContext(UserContext);
+
+
+  const uplaodImage = () =>{
+    
+  }
 
   const postAd = () => {
     axios
@@ -66,6 +73,7 @@ export const AddCarAd = () => {
       {isLoggedIn ? (
         <>
           <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+            
             <MDBInput
               wrapperClass="mb-4"
               label="make"
@@ -183,7 +191,19 @@ export const AddCarAd = () => {
                 setLocation(e.target.value);
               }}
             />
-            <MDBBtn className="mb-4" onClick={(e)=>{postAd()}}>post ad</MDBBtn>
+            <MDBFile
+              wrapperClass="mb-4"
+              size="lg"
+              id="form1"
+            />
+            <MDBBtn
+              wrapperClass="mb-4 mt-4"
+              onClick={(e) => {
+                postAd();
+              }}
+            >
+              post ad
+            </MDBBtn>
           </MDBContainer>
         </>
       ) : (
