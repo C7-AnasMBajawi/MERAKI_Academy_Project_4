@@ -27,13 +27,23 @@ export const AddCarAd = () => {
   const [location, setLocation] = useState("");
   const [rentPrice, setRentPrice] = useState("");
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState("")
+  const [image, setImage] = useState("");
   const { isLoggedIn } = useContext(UserContext);
 
+  const uplaodImage = () => {
+    const uploadedImage = new FormData();
+    uploadedImage.append("file", image);
+    uploadedImage.append("upload_preset", "birrygma");
 
-  const uplaodImage = () =>{
-    
-  }
+    axios
+      .post("https://api.cloudinary.com/v1_1/dre4mdodo/upload", uploadedImage)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const postAd = () => {
     axios
@@ -73,7 +83,6 @@ export const AddCarAd = () => {
       {isLoggedIn ? (
         <>
           <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-            
             <MDBInput
               wrapperClass="mb-4"
               label="make"
@@ -195,11 +204,14 @@ export const AddCarAd = () => {
               wrapperClass="mb-4"
               size="lg"
               id="form1"
+              onChange={(e) => {
+                setImage(e.target.files[0]);
+              }}
             />
             <MDBBtn
               wrapperClass="mb-4 mt-4"
-              onClick={(e) => {
-                postAd();
+              onClick={(e) => {uplaodImage()
+                postAd()
               }}
             >
               post ad
