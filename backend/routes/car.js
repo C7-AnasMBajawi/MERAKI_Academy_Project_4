@@ -10,11 +10,13 @@ const {
   getAllrentAds,
   deleteCarById,
   updateCarById,
+  getRentAdByUser
 } = require("../controllers/car");
 
 carRouter.post("/", authentication, authorization("CREATE"), createNewCarAd);
 carRouter.get("/", getAllrentAds);
 carRouter.delete("/:id", deleteCarById);
 carRouter.put("/:id", updateCarById);
+carRouter.get("/user/:user", getRentAdByUser)
 
 module.exports = carRouter;
