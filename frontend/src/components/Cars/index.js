@@ -25,8 +25,12 @@ const [carAds, setCarAds] = useState([])
   return (
     <div class="container">
         {carAds && carAds.map((oneAd)=>{
+            console.log(oneAd.images[0]);
             return <div class="car" key={oneAd._id}>
-                <p>{oneAd.make}</p>
+                <img className='img' src={oneAd.images[0]}/>
+                <p>Make :{oneAd.make}</p>
+                <p>year :{oneAd.year}</p>
+                <p>model : {oneAd.model}</p>
             </div>
         })}
     </div>
