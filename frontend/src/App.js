@@ -3,6 +3,7 @@ import { Navbar } from "./components/Navbar";
 import { Register } from "./components/Register";
 import { Login } from "./components/Login";
 import { AddCarAd } from "./components/AddCarAd";
+import { Cars } from "./components/Cars";
 import { Routes, Route, Link } from "react-router-dom";
 import React, { useState, createContext} from "react";
 export const UserContext = createContext();
@@ -16,11 +17,11 @@ function App() {
       <div className="App">
         <header className="App-header"></header>
         <Navbar />
-
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/addAd" element={<AddCarAd />}/>
+          <Route path="/cars" element={<Cars />}></Route>
         </Routes>
       </div>
     </UserContext.Provider>
