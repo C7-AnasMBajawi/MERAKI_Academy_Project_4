@@ -1,7 +1,7 @@
 const carModel = require("../models/car");
 
 const createNewCarAd = (req, res) => {
-  const user = req.token.id
+  const user = req.token.id;
   const {
     make,
     model,
@@ -147,23 +147,39 @@ const updateCarById = (res, req) => {
     });
 };
 
-const getRentAdByUser = (req,res) =>{
-  const userId = req.params.user
+const getRentAdByUser = (req, res) => {
+  const userId = req.params.user;
 
   carModel
-    .findMany({user : userId})
-    .then((res)=>{
-      console.log(res);
+    .find({ user: userId })
+    .then((result) => {
+      if (result.length > 0) {
+        res.status(200).json({
+          success: true,
+          message: `all cars for the user ${userId}`,
+          cars: result,
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: `no cars found for the user ${userId}`,
+          cars: result,
+        });
+      }
     })
-    .catch((err)=>{
-      console.log(err);
-    })
-}
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server error",
+        error: err,
+      });
+    });
+};
 
 module.exports = {
   createNewCarAd,
   getAllrentAds,
   deleteCarById,
   updateCarById,
-  getRentAdByUser
+  getRentAdByUser,
 };
