@@ -148,7 +148,7 @@ const updateCarById = (res, req) => {
 };
 
 const getRentAdByUser = (req, res) => {
-  const userId = req.params.user;
+  const userId = req.token.id;
 
   carModel
     .find({ user: userId })
