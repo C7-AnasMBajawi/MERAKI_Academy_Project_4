@@ -44,7 +44,6 @@ const createNewCarAd = (req, res) => {
   newCar
     .save()
     .then((car) => {
-      sendUserPostAdApprove()
       res.status(201).json({
         success: true,
         message: "car created",
