@@ -12,7 +12,7 @@ import {
 } from "mdb-react-ui-kit";
 export const Navbar = () => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   return (
     <>
       {isLoggedIn ? (
@@ -56,7 +56,9 @@ export const Navbar = () => {
               <MDBNavbarLink
                 className="text-white"
                 onClick={(e) => {
-                  navigate("/cars");
+                  localStorage.clear();
+                  setIsLoggedIn(false);
+                  navigate("/login");
                 }}
               >
                 log out
