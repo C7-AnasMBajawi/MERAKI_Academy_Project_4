@@ -4,6 +4,7 @@ import { Register } from "./components/Register";
 import { Login } from "./components/Login";
 import { AddCarAd } from "./components/AddCarAd";
 import { Cars } from "./components/Cars";
+import { Footer } from "./components/Footer";
 import { Routes, Route, Link } from "react-router-dom";
 import React, { useState, createContext } from "react";
 import { UserCars } from "./components/UserCars";
@@ -19,6 +20,7 @@ function App() {
       <div className="App">
         <header className="App-header"></header>
         <Navbar />
+        
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
@@ -26,6 +28,7 @@ function App() {
           <Route path="/cars" element={<Cars />}></Route>
           <Route path="/user/cars" element={<UserCars />}></Route>
         </Routes>
+        <Footer />
       </div>
     </UserContext.Provider>
   );
