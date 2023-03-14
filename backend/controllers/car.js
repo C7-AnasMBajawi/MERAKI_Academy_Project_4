@@ -1,5 +1,9 @@
 const carModel = require("../models/car");
 
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require("twilio")(accountSid, authToken)
+
 const createNewCarAd = (req, res) => {
   const user = req.token.id;
   const {
@@ -40,6 +44,7 @@ const createNewCarAd = (req, res) => {
   newCar
     .save()
     .then((car) => {
+      sendUserPostAdApprove()
       res.status(201).json({
         success: true,
         message: "car created",
@@ -176,10 +181,23 @@ const getRentAdByUser = (req, res) => {
     });
 };
 
+const sendUserPostAdApprove = (req, res) =>{
+  const {make, model, plateNumber}=req.body
+  client.messages
+  .create({
+     body: `your car Ad for ${make} ,${model}, ${plateNumber} `,
+     from: '+15403849963',
+     to: '+962779582933'
+   })
+  .then(message => console.log(message.sid))
+  .catch(message => console.log(message.sid))
+}
+
 module.exports = {
   createNewCarAd,
   getAllrentAds,
   deleteCarById,
   updateCarById,
   getRentAdByUser,
+  sendUserPostAdApprove
 };

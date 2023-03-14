@@ -2,6 +2,8 @@ const userModel = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+
+
 const register = (req, res) => {
   const { firstName, lastName, DoB, phoneNumber, email, password, role} = req.body;
 
@@ -92,5 +94,7 @@ const login = (req, res) => {
       });
     });
 };
+
+
 
 module.exports = { register, login };
