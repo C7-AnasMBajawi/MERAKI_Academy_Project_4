@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import "./index.css" 
+import "./index.css";
 
 export const UserCars = () => {
   const [carAd, setCarAd] = useState("");
@@ -23,13 +23,12 @@ export const UserCars = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       {carAd &&
         carAd.map((oneAd) => {
           return (
-            <div>
-              <img className="image" src={oneAd.images[0]} />
-              <p></p>
+            <div className="car" key={oneAd._id}>
+                <img className="image" src={oneAd.images[0]} />
             </div>
           );
         })}
