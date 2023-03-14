@@ -47,6 +47,17 @@ export const AddCarAd = () => {
       });
   };
 
+  const sendApprovePostMessage = () =>{
+    axios
+      .post("http://localhost:5000/car/approve/sms",{make, model, plateNumber})
+      .then((res)=>{
+        console.log(res);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+  }
+
   const postAd = () => {
     axios
       .post(
@@ -75,6 +86,7 @@ export const AddCarAd = () => {
       )
       .then((res) => {
         console.log(res);
+        sendApprovePostMessage()
       })
       .catch((err) => {
         console.log(err);

@@ -47,7 +47,7 @@ export const Navbar = () => {
               <MDBNavbarLink
                 className="text-white"
                 onClick={(e) => {
-                  navigate("/cars");
+                  navigate("/user/cars");
                 }}
               >
                 my cars

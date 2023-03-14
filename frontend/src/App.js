@@ -6,6 +6,7 @@ import { AddCarAd } from "./components/AddCarAd";
 import { Cars } from "./components/Cars";
 import { Routes, Route, Link } from "react-router-dom";
 import React, { useState, createContext} from "react";
+import { UserCars } from "./components/UserCars";
 export const UserContext = createContext();
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/addAd" element={<AddCarAd />}/>
           <Route path="/cars" element={<Cars />}></Route>
+          <Route path="/user/cars" element={<UserCars/>}></Route>
         </Routes>
       </div>
     </UserContext.Provider>
