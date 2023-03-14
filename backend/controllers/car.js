@@ -189,8 +189,19 @@ const sendUserPostAdApprove = (req, res) =>{
      from: '+15403849963',
      to: '+962779582933'
    })
-  .then(message => console.log(message.sid))
-  .catch(message => console.log(message.sid))
+  .then((res)=>{
+    res.status(200).json({
+      success : true,
+      message : "message has been sent successfuly",
+      result : res
+    })
+  })
+  .catch((err)=>{
+    res.status(500).json({
+      success : false,
+      message : "message hasn't been sent"
+    })
+  })
 }
 
 module.exports = {
