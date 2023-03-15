@@ -113,15 +113,10 @@ export const AddCarAd = () => {
               <option>BMW</option>
             </select>
 
-            <MDBInput
-              wrapperClass="mb-4"
-              label="model"
-              id="form1"
-              type="make"
-              onChange={(e) => {
-                setModel(e.target.value);
-              }}
-            />
+            <select className="mb-4 btn1 bg-primary text-white" placeholder="select your car ">
+              <option>c200</option>
+              <option>550e</option>
+            </select>
             <MDBInput
               wrapperClass="mb-4"
               label="year"
