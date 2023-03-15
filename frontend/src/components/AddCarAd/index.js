@@ -99,7 +99,7 @@ export const AddCarAd = () => {
         <>
           <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
             <MDBInput
-              wrapperClass="mb-4"
+              wrapperClass="mb-4 mt-4"
               label="make"
               id="form1"
               type="make"

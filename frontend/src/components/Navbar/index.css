@@ -15,3 +15,6 @@
     float: left;
     padding: 10px 10px;
 } */
+.nav-sticky{
+    position: sticky;
+}

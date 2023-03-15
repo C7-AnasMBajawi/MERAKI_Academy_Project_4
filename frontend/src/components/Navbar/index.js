@@ -17,7 +17,7 @@ export const Navbar = () => {
     <>
       {isLoggedIn ? (
         <>
-          <MDBNavbar className="bg-primary">
+          <MDBNavbar fixed='top' className="bg-primary mb-4">
             <MDBContainer fluid>
               <MDBNavbarBrand>
                 <img
@@ -29,7 +29,7 @@ export const Navbar = () => {
               <MDBNavbarLink
                 className="text-white"
                 onClick={(e) => {
-                  navigate("/login");
+                  navigate("/addAd");
                 }}
               >
                 rent my car
@@ -64,14 +64,14 @@ export const Navbar = () => {
                 log out
               </MDBNavbarLink>
 
-              <MDBInputGroup tag="form" className="d-flex w-auto mb-3">
+              <MDBInputGroup  tag="form" className="d-flex w-auto">
                 <input
                   className="form-control"
                   placeholder="cars for rent"
                   aria-label="Search"
                   type="Search"
                 />
-                <MDBBtn outline className="bg-light">
+                <MDBBtn className="bg-light text-primary">
                   Search
                 </MDBBtn>
               </MDBInputGroup>
@@ -107,14 +107,14 @@ export const Navbar = () => {
                 vehclies
               </MDBNavbarLink>
 
-              <MDBInputGroup tag="form" className="d-flex w-auto mb-3">
+              <MDBInputGroup tag="form" className="d-flex w-auto">
                 <input
                   className="form-control"
                   placeholder="cars for rent"
                   aria-label="Search"
                   type="Search"
                 />
-                <MDBBtn outline className="bg-light">
+                <MDBBtn className="bg-light text-primary">
                   Search
                 </MDBBtn>
               </MDBInputGroup>
