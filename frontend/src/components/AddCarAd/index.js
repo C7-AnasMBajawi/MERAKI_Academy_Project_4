@@ -10,6 +10,10 @@ import {
   MDBIcon,
   MDBTextArea,
   MDBFile,
+  MDBDropdown,
+  MDBDropdownMenu,
+  MDBDropdownToggle,
+  MDBDropdownItem,
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
@@ -47,16 +51,20 @@ export const AddCarAd = () => {
       });
   };
 
-  const sendApprovePostMessage = () =>{
+  const sendApprovePostMessage = () => {
     axios
-      .post("http://localhost:5000/car/approve/sms",{make, model, plateNumber})
-      .then((res)=>{
+      .post("http://localhost:5000/car/approve/sms", {
+        make,
+        model,
+        plateNumber,
+      })
+      .then((res) => {
         console.log(res);
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err);
-      })
-  }
+      });
+  };
 
   const postAd = () => {
     axios
@@ -86,7 +94,7 @@ export const AddCarAd = () => {
       )
       .then((res) => {
         console.log(res);
-        sendApprovePostMessage()
+        sendApprovePostMessage();
       })
       .catch((err) => {
         console.log(err);
@@ -241,6 +249,15 @@ export const AddCarAd = () => {
             >
               post ad
             </MDBBtn>
+
+            <MDBDropdown>
+            <MDBDropdownToggle>Dropdown button</MDBDropdownToggle>
+            <MDBDropdownMenu>
+              <MDBDropdownItem link>Action</MDBDropdownItem>
+              <MDBDropdownItem link>Another action</MDBDropdownItem>
+              <MDBDropdownItem link>Something else here</MDBDropdownItem>
+            </MDBDropdownMenu>
+          </MDBDropdown>
           </MDBContainer>
         </>
       ) : (
