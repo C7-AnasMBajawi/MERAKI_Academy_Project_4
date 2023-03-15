@@ -16,6 +16,7 @@ import {
   MDBDropdownItem,
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import "./index.css";
 
 export const AddCarAd = () => {
   const [make, setMake] = useState("");
@@ -106,15 +107,12 @@ export const AddCarAd = () => {
       {isLoggedIn ? (
         <>
           <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-            <MDBInput
-              wrapperClass="mb-4 mt-4"
-              label="make"
-              id="form1"
-              type="make"
-              onChange={(e) => {
-                setMake(e.target.value);
-              }}
-            />
+
+            <select className="mb-4 btn1 bg-primary text-white" placeholder="select your car ">
+              <option>Mercedese</option>
+              <option>BMW</option>
+            </select>
+
             <MDBInput
               wrapperClass="mb-4"
               label="model"
@@ -250,14 +248,16 @@ export const AddCarAd = () => {
               post ad
             </MDBBtn>
 
-            <MDBDropdown>
-            <MDBDropdownToggle>Dropdown button</MDBDropdownToggle>
-            <MDBDropdownMenu>
-              <MDBDropdownItem link>Action</MDBDropdownItem>
-              <MDBDropdownItem link>Another action</MDBDropdownItem>
-              <MDBDropdownItem link>Something else here</MDBDropdownItem>
-            </MDBDropdownMenu>
-          </MDBDropdown>
+            <MDBDropdown responsive="lg-end">
+              <MDBDropdownToggle className="btn1 mb-4">
+                Dropdown button
+              </MDBDropdownToggle>
+              <MDBDropdownMenu>
+                <MDBDropdownItem link>Action</MDBDropdownItem>
+                <MDBDropdownItem link>Another action</MDBDropdownItem>
+                <MDBDropdownItem link>Something else here</MDBDropdownItem>
+              </MDBDropdownMenu>
+            </MDBDropdown>
           </MDBContainer>
         </>
       ) : (

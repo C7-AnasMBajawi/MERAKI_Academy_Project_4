@@ -1,7 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import "./index.css"
-
+import {
+    MDBCard,
+    MDBCardBody,
+    MDBCardTitle,
+    MDBCardText,
+    MDBCardImage,
+    MDBBtn
+  } from 'mdb-react-ui-kit';
+  
 
 export const Cars = () => {
 
@@ -23,15 +31,19 @@ const [carAds, setCarAds] = useState([])
     }, [])
     
   return (
-    <div class="container">
+    <div class="container1">
         {carAds && carAds.map((oneAd)=>{
             console.log(oneAd.images[0]);
-            return <div class="car" key={oneAd._id}>
-                <img className='img' src={oneAd.images[0]}/>
-                <p>Make :{oneAd.make}</p>
-                <p>year :{oneAd.year}</p>
-                <p>model : {oneAd.model}</p>
-            </div>
+            return <MDBCard className='car'>
+            <MDBCardImage  src={oneAd.images[0]} position='top' alt='...' />
+            <MDBCardBody>
+              <MDBCardTitle>{oneAd.title}</MDBCardTitle>
+              <MDBCardText>
+                Some quick example text to build on the card title and make up the bulk of the card's content.
+              </MDBCardText>
+              <MDBBtn href='#'>Button</MDBBtn>
+            </MDBCardBody>
+          </MDBCard>
         })}
     </div>
   )

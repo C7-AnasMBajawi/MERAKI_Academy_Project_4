@@ -12,7 +12,7 @@ export const UserContext = createContext();
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token") == null ? false : true);
   return (
     <UserContext.Provider
       value={{ token, setToken, isLoggedIn, setIsLoggedIn }}
