@@ -27,8 +27,15 @@ export const UserCars = () => {
       {carAd &&
         carAd.map((oneAd) => {
           return (
-            <div className="car" key={oneAd._id}>
+            <div className="user-card" key={oneAd._id}>
                 <img className="image" src={oneAd.images[0]} />
+                <div>
+                  <h2>{oneAd.title}</h2>
+                  <h3>{oneAd.rentPrice + " JOD"}</h3>
+                  <p>{oneAd.description}</p>
+                  <button>edit</button>
+                  <button>delete</button>
+                </div>
             </div>
           );
         })}
