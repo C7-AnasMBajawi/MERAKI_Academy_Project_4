@@ -35,13 +35,14 @@ const [carAds, setCarAds] = useState([])
         {carAds && carAds.map((oneAd)=>{
             console.log(oneAd.images[0]);
             return <MDBCard className='car'>
-            <MDBCardImage  src={oneAd.images[0]} position='top' alt='...' />
-            <MDBCardBody>
+            <MDBCardImage   src={oneAd.images[0]} position='top' alt='...' />
+            <MDBCardBody >
               <MDBCardTitle>{oneAd.title}</MDBCardTitle>
               <MDBCardText>
-                Some quick example text to build on the card title and make up the bulk of the card's content.
+                {oneAd.rentPrice + " JOD"}
+                
               </MDBCardText>
-              <MDBBtn href='#'>Button</MDBBtn>
+              <MDBBtn href='#'>view</MDBBtn>
             </MDBCardBody>
           </MDBCard>
         })}

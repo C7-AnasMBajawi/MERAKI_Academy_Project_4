@@ -109,12 +109,12 @@ export const AddCarAd = () => {
           <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
 
             <select className="mb-4 btn1 bg-primary text-white" placeholder="select your car ">
-              <option>Mercedese</option>
+              <option className="bg-light">Mercedese</option>
               <option>BMW</option>
             </select>
 
-            <select className="mb-4 btn1 bg-primary text-white" placeholder="select your car ">
-              <option>c200</option>
+            <select className="mb-4 btn2 bg-primary text-white" placeholder="select your car ">
+              <option className="bg-ligth">c200</option>
               <option>550e</option>
             </select>
             <MDBInput
