@@ -35,6 +35,9 @@ export const AddCarAd = () => {
   const [image, setImage] = useState("");
   const { isLoggedIn } = useContext(UserContext);
   const [images, setImages] = useState("");
+  const arr =[{make : "Mercedes" , model:"C200"}, {make : "BMW" , model : "530e"}, {make : "Mercedes", model : "E200"}, {make : "Toyota", model : "camary"}, {make : "Toyota", model : "corolla"}, {make : "Toyota", model : "avalon"},{make : "Toyota", model : "yaris"},{make : "Toyota", model : "land crusier"}, {make : "Toyota", model : "fortuner"}, {make : "Mercedes" , model:"CLA 45"}, {make : "BMW" , model : "330e"}, {make : "BMW" , model : "X4"}, {make : "BMW" , model : "X5"}, {make : "BMW" , model : "iX3"}, {make : "BMW" , model : "i8"},{make : "KIA" , model : "K3"}, {make : "KIA" , model : "K5"}, {make : "KIA" , model : "sporatage"}, {make : "KIA" , model : "sporatage"},
+  {make : "Honda" , model : "civic"}, {make : "Honda" , model : "accord"}, {make : "Honda" , model : "CR-V"}, {make : "Honda" , model : "MR-V"}]
+
 
   const uplaodImage = () => {
     const uploadedImage = new FormData();
@@ -109,13 +112,15 @@ export const AddCarAd = () => {
           <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
 
             <select className="mb-4 btn1 bg-primary text-white" placeholder="select your car ">
-              <option className="bg-light">Mercedese</option>
-              <option>BMW</option>
+              {arr.map((oneMake)=>{
+                return <option onChange={(e)=>{setMake(e.target.value)}}>{oneMake.make}</option>
+              })}
             </select>
 
             <select className="mb-4 btn2 bg-primary text-white" placeholder="select your car ">
-              <option className="bg-ligth">c200</option>
-              <option>550e</option>
+              {/* {arr.filter((models)=>{
+                return <option>{models.model}</option>
+              })} */}
             </select>
             <MDBInput
               wrapperClass="mb-4"
