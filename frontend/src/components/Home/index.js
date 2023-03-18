@@ -20,7 +20,7 @@ export const Home = () => {
         <div className="d-flex justify-content-center align-items-center h-100">
           <div className="text-white">
             <h1 className="mb-3">Welcome to LUXCAR</h1>
-            <h4 className="mb-3">you can start now</h4>
+            <h4 className="mb-3">you can start now as :</h4>
             <a
               className="home-btn1 btn btn-outline-light btn-lg"
               href="#!"

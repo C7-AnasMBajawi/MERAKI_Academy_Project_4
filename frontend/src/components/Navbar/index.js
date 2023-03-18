@@ -19,13 +19,14 @@ export const Navbar = () => {
         <>
           <MDBNavbar fixed='top' className="bg-primary mb-4">
             <MDBContainer fluid>
-              <MDBNavbarBrand>
-                <img
+              <MDBNavbarBrand className=" text-light">
+                {/* <img
                   src="https://t3.ftcdn.net/jpg/04/08/51/18/360_F_408511812_8UGTuX8BieG571jrbmz0PYsqLv1xPrjO.jpg"
                   height="30"
                   width="40"
                   
-                />
+                /> */}
+                LUXCAR
               </MDBNavbarBrand>
 
               <MDBNavbarLink
@@ -94,12 +95,13 @@ export const Navbar = () => {
         <>
           <MDBNavbar  fixed='top' className="bg-primary">
             <MDBContainer fluid>
-              <MDBNavbarBrand>
-                <img
+              <MDBNavbarBrand className=" text-light" >
+                {/* <img
                   src="https://t3.ftcdn.net/jpg/04/08/51/18/360_F_408511812_8UGTuX8BieG571jrbmz0PYsqLv1xPrjO.jpg"
                   height="30"
                   width="40"
-                />
+                /> */}
+                LUXCAR
               </MDBNavbarBrand>
 
               <MDBNavbarLink

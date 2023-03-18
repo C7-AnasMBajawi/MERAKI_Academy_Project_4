@@ -24,6 +24,7 @@ export const Login = () => {
         setToken(res.data.token)
         localStorage.setItem("token", res.data.token)
         setIsLoggedIn(true)
+        
       })
       .catch((err) => {
         console.log(err);
@@ -34,7 +35,7 @@ export const Login = () => {
       <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
         
         <MDBInput
-          wrapperClass="mb-4"
+          wrapperClass="mt-4 mb-4"
           label="Email address"
           id="form1"
           type="email"
