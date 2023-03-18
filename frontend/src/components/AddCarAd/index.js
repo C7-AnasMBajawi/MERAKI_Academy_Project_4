@@ -35,11 +35,22 @@ export const AddCarAd = () => {
   const [image, setImage] = useState("");
   const { isLoggedIn } = useContext(UserContext);
   const [images, setImages] = useState("");
+  const [index, setIndex] = useState(0);
   const arr = [
-    { make: "Mercedes",model: ["C200", "CLA 45", "E200"] },
-    { make: "BMW", model: ["530e","330e","iX3","i8","X4", "X5", ] },
-    { make: "Toyota", model: ["camary", "corolla", "avalon", "yaris", "land crusier", "fortuner"] },
-    { make: "KIA", model: ["K3","K5","sporatage"]},
+    { make: "Mercedes", model: ["C200", "CLA 45", "E200"] },
+    { make: "BMW", model: ["530e", "330e", "iX3", "i8", "X4", "X5"] },
+    {
+      make: "Toyota",
+      model: [
+        "camary",
+        "corolla",
+        "avalon",
+        "yaris",
+        "land crusier",
+        "fortuner",
+      ],
+    },
+    { make: "KIA", model: ["K3", "K5", "sporatage"] },
     { make: "Honda", model: ["civic", "accord", "CR-V", "MR-V"] },
   ];
 
@@ -117,14 +128,15 @@ export const AddCarAd = () => {
             <select
               className="mb-4 btn1 bg-primary text-white"
               placeholder="select your car "
+              onChange={(e) => {
+                setMake(arr[e.target.value].make);
+                console.log(make);
+                setIndex(e.target.value);
+              }}
             >
-              {arr.map((oneMake) => {
+              {arr.map((oneMake, i) => {
                 return (
-                  <option
-                    onChange={(e) => {
-                      setMake(e.target.value);
-                    }}
-                  >
+                  <option key={i} value={i}>
                     {oneMake.make}
                   </option>
                 );
@@ -134,10 +146,17 @@ export const AddCarAd = () => {
             <select
               className="mb-4 btn2 bg-primary text-white"
               placeholder="select your car "
+              onChange={(e) => {
+                setModel(e.target.value);
+              }}
             >
-              {/* {arr.filter((models)=>{
-                return <option>{models.model}</option>
-              })} */}
+              {arr[index].model.map((modelsOfOneMake, i) => {
+                return (
+                  <option className="opt" key={i}>
+                    {modelsOfOneMake}
+                  </option>
+                );
+              })}
             </select>
             <MDBInput
               wrapperClass="mb-4"
@@ -264,17 +283,6 @@ export const AddCarAd = () => {
             >
               post ad
             </MDBBtn>
-
-            <MDBDropdown responsive="lg-end">
-              <MDBDropdownToggle className="btn1 mb-4">
-                Dropdown button
-              </MDBDropdownToggle>
-              <MDBDropdownMenu>
-                <MDBDropdownItem link>Action</MDBDropdownItem>
-                <MDBDropdownItem link>Another action</MDBDropdownItem>
-                <MDBDropdownItem link>Something else here</MDBDropdownItem>
-              </MDBDropdownMenu>
-            </MDBDropdown>
           </MDBContainer>
         </>
       ) : (
