@@ -18,6 +18,20 @@ export const UserCars = () => {
         console.log(err);
       });
   };
+
+  const deleteCarById =(id) =>{
+    axios
+      .delete(`http://localhost:5000/car/${id}`)
+      .then((res)=>{
+        console.log(res);
+        const carsAfterDelete = carAd.filter((deletedCar)=>{return deletedCar._id !== id})
+        setCarAd(carsAfterDelete)
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+  }
+
   useEffect(() => {
     getUserCars();
   }, []);
@@ -34,7 +48,7 @@ export const UserCars = () => {
                   <h3>{oneAd.rentPrice + " JOD"}</h3>
                   <p>{oneAd.description}</p>
                   <button>edit</button>
-                  <button>delete</button>
+                  <button onClick={(e)=>{deleteCarById(oneAd._id)}}>delete</button>
                 </div>
             </div>
           );

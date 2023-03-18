@@ -27,6 +27,7 @@ export const AddCarAd = () => {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [rentPrice, setRentPrice] = useState("");
+  const [weeklyRent, setWeeklyRent] = useState("")
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const { isLoggedIn } = useContext(UserContext);
@@ -183,22 +184,24 @@ export const AddCarAd = () => {
             />
             <MDBCheckbox
               wrapperClass="mb-4"
-              label="isAutomatic"
+              label="Automatic"
               id="form1"
               onChange={(e) => {
                 setisAutomatic(!isAutomatic);
                 console.log(isAutomatic);
               }}
             />
-            <MDBInput
-              wrapperClass="mb-4"
-              label="type"
-              id="form1"
-              type="make"
+            <select
+              className="mb-4 btn2 bg-primary text-white"
+              placeholder="select your car "
               onChange={(e) => {
                 setType(e.target.value);
               }}
-            />
+            >
+              <option className="opt">Luxary</option>
+              <option className="opt">Sedan</option>
+              <option className="opt">SUV</option>
+            </select>
             <MDBInput
               wrapperClass="mb-4"
               label="color"
@@ -208,15 +211,17 @@ export const AddCarAd = () => {
                 setColor(e.target.value);
               }}
             />
-            <MDBInput
-              wrapperClass="mb-4"
-              label="fuel type"
-              id="form1"
-              type="make"
+            <select
+              className="mb-4 btn2 bg-primary text-white"
+              placeholder="select your car "
               onChange={(e) => {
                 setFuelType(e.target.value);
               }}
-            />
+            >
+              <option className="opt">Hybrid</option>
+              <option className="opt">Electric</option>
+              <option className="opt">Gas</option>
+            </select>
             <MDBTextArea
               wrapperClass="mb-4"
               label="description"
@@ -228,7 +233,16 @@ export const AddCarAd = () => {
             />
             <MDBInput
               wrapperClass="mb-4"
-              label="rent price"
+              label="weekly rent price"
+              id="form1"
+              type="make"
+              onChange={(e) => {
+                setWeeklyRent(e.target.value);
+              }}
+            />
+            <MDBInput
+              wrapperClass="mb-4"
+              label="daily rent price"
               id="form1"
               type="make"
               onChange={(e) => {
