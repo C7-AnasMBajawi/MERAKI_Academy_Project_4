@@ -24,8 +24,20 @@ export const Navbar = () => {
                   src="https://t3.ftcdn.net/jpg/04/08/51/18/360_F_408511812_8UGTuX8BieG571jrbmz0PYsqLv1xPrjO.jpg"
                   height="30"
                   width="40"
+                  
                 />
               </MDBNavbarBrand>
+
+              <MDBNavbarLink
+                className="text-white"
+                onClick={(e) => {
+                  navigate("/home");
+                }}
+              >
+                home
+              </MDBNavbarLink>
+
+
               <MDBNavbarLink
                 className="text-white"
                 onClick={(e) => {
@@ -80,7 +92,7 @@ export const Navbar = () => {
         </>
       ) : (
         <>
-          <MDBNavbar className="bg-primary">
+          <MDBNavbar  fixed='top' className="bg-primary">
             <MDBContainer fluid>
               <MDBNavbarBrand>
                 <img
@@ -89,6 +101,16 @@ export const Navbar = () => {
                   width="40"
                 />
               </MDBNavbarBrand>
+
+              <MDBNavbarLink
+                className="text-white"
+                onClick={(e) => {
+                  navigate("/home");
+                }}
+              >
+                home
+              </MDBNavbarLink>
+
               <MDBNavbarLink
                 className="text-white"
                 onClick={(e) => {

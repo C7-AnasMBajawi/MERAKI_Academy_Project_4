@@ -10,10 +10,6 @@ import {
   MDBIcon,
   MDBTextArea,
   MDBFile,
-  MDBDropdown,
-  MDBDropdownMenu,
-  MDBDropdownToggle,
-  MDBDropdownItem,
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./index.css";
