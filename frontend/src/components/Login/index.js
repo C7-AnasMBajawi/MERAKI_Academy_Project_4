@@ -9,12 +9,40 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
   const {setToken, setIsLoggedIn} = useContext(UserContext)
+
+  const successfullyNotify = ()=>{
+    toast.success('succussfly login', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
+const errorNotify =()=>{
+   toast.error('password or email is invalid', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+}
+ 
 
   const postLogin = () => {
     axios
@@ -24,10 +52,11 @@ export const Login = () => {
         setToken(res.data.token)
         localStorage.setItem("token", res.data.token)
         setIsLoggedIn(true)
-        
+        navigate("/addAd")
+        successfullyNotify()
       })
       .catch((err) => {
-        console.log(err);
+        errorNotify()
       });
   };
   return (
@@ -65,7 +94,7 @@ export const Login = () => {
 
         <MDBBtn
           className="mb-4"
-          onClick={(e) => {navigate("/addAd")
+          onClick={(e) => {
             postLogin()
           }}
         >
@@ -119,6 +148,7 @@ export const Login = () => {
             </MDBBtn>
           </div>
         </div>
+        <ToastContainer/>
       </MDBContainer>
     </>
   );

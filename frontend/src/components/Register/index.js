@@ -14,6 +14,8 @@ import {
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "./index.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -24,6 +26,34 @@ export const Register = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const role = "64075efb9e44d62bd11f48bd";
+
+
+  const successfullyNotify = ()=>{
+    toast.success('succussfly Registerd', {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
+
+
+  const errorNotify =() =>{
+    toast.error('fields are invalid', {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
 
   const postUser = () => {
     axios
@@ -38,9 +68,11 @@ export const Register = () => {
       })
       .then((res) => {
         console.log(res);
+        successfullyNotify()
       })
       .catch((err) => {
         console.log(err);
+        errorNotify()
       });
   };
 
@@ -206,6 +238,7 @@ export const Register = () => {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+      <ToastContainer/>
     </MDBContainer>
   );
 };

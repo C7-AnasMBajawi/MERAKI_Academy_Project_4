@@ -12,6 +12,8 @@ import {
   MDBFile,
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./index.css";
 
 export const AddCarAd = () => {
@@ -27,14 +29,36 @@ export const AddCarAd = () => {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [rentPrice, setRentPrice] = useState("");
-  const [weeklyRent, setWeeklyRent] = useState("")
+  const [weeklyRent, setWeeklyRent] = useState("");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const { isLoggedIn } = useContext(UserContext);
   const [images, setImages] = useState("");
   const [index, setIndex] = useState(0);
   const arr = [
-    { make: "Mercedes", model: ["C200", "CLA 45", "E200"] },
+    {make : "Select your car make", model :["Select your car model"]},
+    {
+      make: "Mercedes",
+      model: [
+        "A250",
+        "C200",
+        "C300",
+        "CLA 250",
+        "CLA 45",
+        "CLS 350",
+        "CLS 450",
+        "CLS 53",
+        "E200",
+        "E300",
+        "G 500",
+        "G 63",
+        "GLA 200",
+        "GLA 300",
+        "S 320",
+        "S 450",
+        "S 500",
+      ],
+    },
     { make: "BMW", model: ["530e", "330e", "iX3", "i8", "X4", "X5"] },
     {
       make: "Toyota",
@@ -47,8 +71,43 @@ export const AddCarAd = () => {
         "fortuner",
       ],
     },
-    { make: "KIA", model: ["K3", "K5", "sporatage"] },
-    { make: "Honda", model: ["civic", "accord", "CR-V", "MR-V"] },
+    {
+      make: "KIA",
+      model: [
+        "K3",
+        "K5",
+        "K8",
+        "Forte",
+        "Rio",
+        "Sorento",
+        "Niro",
+        "Picanto",
+        "Sedona",
+        "Sportage",
+        "Soul",
+        "Stinger",
+      ],
+    },
+    {
+      make: "Honda",
+      model: ["Accord", "Civic", "CR-V", "MR-V", "Odyssey", "Pilot"],
+    },
+    {
+      make: "lexsus",
+      model: [
+        "ES",
+        "GS",
+        "GX",
+        "IS",
+        "LX",
+        "RC",
+        "RX",
+        "RCF",
+        "LS",
+        "NX",
+        "CT",
+      ],
+    },
   ];
 
   const uplaodImage = () => {
@@ -82,6 +141,32 @@ export const AddCarAd = () => {
       });
   };
 
+  const successfullyNotify = ()=>{
+    toast.success('succussfly posted', {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
+
+  const errorNotify =() =>{
+    toast.error('missing required field', {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
+
   const postAd = () => {
     axios
       .post(
@@ -97,6 +182,7 @@ export const AddCarAd = () => {
           milage,
           color,
           rentPrice,
+          weeklyRent,
           title,
           description,
           location,
@@ -111,9 +197,10 @@ export const AddCarAd = () => {
       .then((res) => {
         console.log(res);
         sendApprovePostMessage();
+        successfullyNotify()
       })
       .catch((err) => {
-        console.log(err);
+        errorNotify()
       });
   };
 
@@ -198,10 +285,31 @@ export const AddCarAd = () => {
                 setType(e.target.value);
               }}
             >
+              <option className="opt" value={undefined}>select your car type</option>
               <option className="opt">Luxary</option>
               <option className="opt">Sedan</option>
               <option className="opt">SUV</option>
             </select>
+
+            <select
+              className="mb-4 btn2 bg-primary text-white"
+              placeholder="select your car "
+              onChange={(e) => {
+                setFuelType(e.target.value);
+              }}
+            >
+              <option className="opt">select your car fuel type</option>
+              <option className="opt" value={"Hybrid"}>
+                Hybrid
+              </option>
+              <option className="opt" value={"Electric"}>
+                Electric
+              </option>
+              <option className="opt" value={"Gas"}>
+                Gas
+              </option>
+            </select>
+
             <MDBInput
               wrapperClass="mb-4"
               label="color"
@@ -211,17 +319,6 @@ export const AddCarAd = () => {
                 setColor(e.target.value);
               }}
             />
-            <select
-              className="mb-4 btn2 bg-primary text-white"
-              placeholder="select your car "
-              onChange={(e) => {
-                setFuelType(e.target.value);
-              }}
-            >
-              <option className="opt">Hybrid</option>
-              <option className="opt">Electric</option>
-              <option className="opt">Gas</option>
-            </select>
             <MDBTextArea
               wrapperClass="mb-4"
               label="description"
@@ -258,15 +355,26 @@ export const AddCarAd = () => {
                 setTitle(e.target.value);
               }}
             />
-            <MDBInput
-              wrapperClass="mb-4"
-              label="location"
-              id="form1"
-              type="make"
+            <select
+              className="mb-4 btn2 bg-primary text-white"
+              placeholder="select your car "
               onChange={(e) => {
                 setLocation(e.target.value);
               }}
-            />
+            >
+              <option className="opt" value={""}>
+                City 
+              </option>
+              <option className="opt" value={"Amman"}>
+                Amman
+              </option>
+              <option className="opt" value={"Irbid"}>
+                Irbid
+              </option>
+              <option className="opt" value={"Aqaba"}>
+                Aqaba
+              </option>
+            </select>
             <MDBFile
               wrapperClass="mb-4"
               size="lg"
@@ -293,6 +401,7 @@ export const AddCarAd = () => {
             >
               post ad
             </MDBBtn>
+            <ToastContainer />
           </MDBContainer>
         </>
       ) : (

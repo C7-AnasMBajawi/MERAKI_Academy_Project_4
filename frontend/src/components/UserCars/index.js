@@ -3,6 +3,24 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 
 export const UserCars = () => {
+  const [make, setMake] = useState("");
+  const [model, setModel] = useState("");
+  const [year, setYear] = useState("");
+  const [milage, setMilage] = useState("");
+  const [plateNumber, setPlateNumber] = useState("");
+  const [isAutomatic, setisAutomatic] = useState(false);
+  const [type, setType] = useState("");
+  const [fuelType, setFuelType] = useState("");
+  const [color, setColor] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+  const [rentPrice, setRentPrice] = useState("");
+  const [weeklyRent, setWeeklyRent] = useState("")
+  const [title, setTitle] = useState("");
+  const [images, setImages] = useState("");
+
+
+
   const [carAd, setCarAd] = useState("");
   const getUserCars = () => {
     axios
@@ -30,6 +48,31 @@ export const UserCars = () => {
       .catch((err)=>{
         console.log(err);
       })
+  }
+
+  const updateCarById = (id)=>{
+    axios.
+    put(`http://localhost:5000/car/${id}` ,{
+      make,
+      model,
+      plateNumber,
+      year,
+      type,
+      fuelType,
+      isAutomatic,
+      milage,
+      color,
+      rentPrice,
+      weeklyRent,
+      title,
+      description,
+      location,
+      images
+    }).then((res)=>{
+
+    }).catch((res)=>{
+      
+    })
   }
 
   useEffect(() => {

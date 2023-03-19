@@ -37,10 +37,12 @@ const [carAds, setCarAds] = useState([])
             return <MDBCard className='car'>
             <MDBCardImage   src={oneAd.images[0]} position='top' alt='...' />
             <MDBCardBody >
-              <MDBCardTitle>{oneAd.title}</MDBCardTitle>
-              <MDBCardText>
+              <MDBCardTitle >{oneAd.title}</MDBCardTitle>
+              <MDBCardText className='mb-0'>
                 {oneAd.rentPrice + " JOD"}
-                
+              </MDBCardText>
+              <MDBCardText className='mb-0'>
+                {oneAd.location }
               </MDBCardText>
               <MDBBtn href='#'>view</MDBBtn>
             </MDBCardBody>
