@@ -67,7 +67,6 @@ export const Register = () => {
         role,
       })
       .then((res) => {
-        console.log(res);
         successfullyNotify()
       })
       .catch((err) => {
